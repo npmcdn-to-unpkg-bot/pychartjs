@@ -1,7 +1,7 @@
 {
   "name": "pychartjs",
   "version": "0.0.1",
-  "description": "Wrapping of Chart.js in Pytho",
+  "description": "Wrapping of Chart.js in Python",
   "author": "Irwin Zaid",
   "main": "src/index.js",
   "repository": {
@@ -24,6 +24,8 @@
   },
   "dependencies": {
     "jupyter-js-widgets": "^1.1.1",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "element-resize-detector": "^1.1.0",
+    "chart.js": "^2.1.3"
   }
 }

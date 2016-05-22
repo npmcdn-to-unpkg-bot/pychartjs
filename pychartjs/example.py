@@ -9,3 +9,6 @@ class HelloWorld(widgets.DOMWidget):
     _view_module = Unicode('pychartjs').tag(sync=True)
     _model_module = Unicode('pychartjs').tag(sync=True)
     value = Unicode('Hello World!').tag(sync=True)
+
+#    def on_displayed(self):
+#        print 'displayed'
