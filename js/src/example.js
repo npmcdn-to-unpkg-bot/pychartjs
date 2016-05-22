@@ -27,9 +27,14 @@ var HelloModel = widgets.DOMWidgetModel.extend({
 // Custom View. Renders the widget model.
 var HelloView = widgets.DOMWidgetView.extend({
     render: function() {
+//      this.el.
+
       var canvas = document.createElement("canvas");
       this.el.appendChild(canvas);
 
+      this.displayed.then(function() {
+        console.log("canvas.width: " + canvas.width);
+        console.log("canvas.height: " + canvas.height);
       var myChart = new Chart(canvas, {
           type: 'bar',
           data: {
@@ -41,7 +46,7 @@ var HelloView = widgets.DOMWidgetView.extend({
         },
         options: {
             responsive: true,
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
             scales: {
               yAxes: [{
                 ticks: {
@@ -51,41 +56,80 @@ var HelloView = widgets.DOMWidgetView.extend({
         }
     }
 });
+    });
 
-      resizeDetector.listenTo(this.el, function(element) {
-          console.log("resizing");
-          console.dir(element);
-//          var width = element.offsetWidth;
-  //        var height = element.offsetHeight;
-          console.log("offsetWidth: " + element.offsetWidth);
-          console.log("offsetHeight: " + element.offsetHeight);
+//      var ctx = canvas.getContext("2d");
 
-          myChart.resize();
-      });
+/*
+        console.log("before Chart");
+        console.log("-----");
+        console.log("ctx.canvas.width: " + ctx.canvas.width);
+        console.log("parseInt(Chart.helpers.getStyle(ctx.canvas, 'width')): " + parseInt(Chart.helpers.getStyle(ctx.canvas, 'width')));
+        console.log("Chart.helpers.getMaximumWidth(ctx.canvas): " + Chart.helpers.getMaximumWidth(ctx.canvas));
+        var w = ctx.canvas.width || parseInt(Chart.helpers.getStyle(ctx.canvas, 'width')) || Chart.helpers.getMaximumWidth(ctx.canvas);
+        console.log("width: " + w);
+        console.log("test: " + (w !== Chart.helpers.getMaximumWidth(ctx.canvas)));
+        console.log("ctx.canvas.height: " + ctx.canvas.height);
+        console.log("parseInt(Chart.helpers.getStyle(ctx.canvas, 'height')): " + parseInt(Chart.helpers.getStyle(ctx.canvas, 'height')));
+        console.log("Chart.helpers.getMaximumHeight(ctx.canvas): " + Chart.helpers.getMaximumHeight(ctx.canvas));
+        console.log("height: " + ctx.canvas.height || parseInt(Chart.helpers.getStyle(ctx.canvas, 'height')) || Chart.helpers.getMaximumHeight(ctx.canvas));
+        console.log("window.devicePixelRatio: " + window.devicePixelRatio);
+        console.log("-----");
+*/
 
-            resizeDetector.listenTo(canvas, function(element) {
-                console.log("canvas resizing");
-            });
 
-        this.model.on('change:layout', this.change_layout, this);
+/*
+        console.log("after Chart");
+        console.log("-----");
+        console.log("ctx.canvas.width: " + ctx.canvas.width);
+        console.log("parseInt(Chart.helpers.getStyle(ctx.canvas, 'width')): " + parseInt(Chart.helpers.getStyle(ctx.canvas, 'width')));
+        console.log("Chart.helpers.getMaximumWidth(ctx.canvas): " + Chart.helpers.getMaximumWidth(ctx.canvas));
+        console.log("width: " + ctx.canvas.width || parseInt(Chart.helpers.getStyle(ctx.canvas, 'width')) || Chart.helpers.getMaximumWidth(ctx.canvas));
+        console.log("ctx.canvas.height: " + ctx.canvas.height);
+        console.log("parseInt(Chart.helpers.getStyle(ctx.canvas, 'height')): " + parseInt(Chart.helpers.getStyle(ctx.canvas, 'height')));
+        console.log("Chart.helpers.getMaximumHeight(ctx.canvas): " + Chart.helpers.getMaximumHeight(ctx.canvas));
+        console.log("height: " + ctx.canvas.height || parseInt(Chart.helpers.getStyle(ctx.canvas, 'height')) || Chart.helpers.getMaximumHeight(ctx.canvas));
+        console.log("window.devicePixelRatio: " + window.devicePixelRatio);
+        console.log("-----");
+*/
+
+//      this.el.myChart = myChart;
+//      console.dir(myChart);
+
+//      resizeDetector.listenTo(this.el, function(element) {
+  //      console.dir(canvas);
+    //    canvas.width = element.clientWidth;
+      //  canvas.height = element.clientHeight - 5;
 
 
-//        this.model.on('change:visible', this.change_visible, this);
+  //    console.log("custom resize callback");
+//          ctx.scale(1, 1);
+  //      console.log("resize");
+//      chart.chart.width = element.clientWidth;
+  //    chart.chart.height = element.clientHeight;
 
-        this.value_changed();
-        this.model.on('change:value', this.value_changed, this);
+//        console.log("offsetWidth: " + element.offsetWidth);
+  //      console.log("offsetHeight: " + element.offsetHeight);
+
+//      myChart.width = 10;
+//        myChart.resize();
+    //  });
+
+//        this.value_changed();
+//        this.model.on('change:value', this.value_changed, this);
+    //    this.listenTo(this.model, "change:layout", this.layout_changed, this);
+//        this.model.on('change:layout', this.layout_changed, this);
     },
 
-      change_layout: function() {
-          console.log("layout_changed");
+//    layout_changed: function() {
+  //    console.log("layout_changed");
+    //  this.el.myChart.resize();
+    //},
 
-//            this.stopListening(this.model.previous("layout"));
-//            this.listenTo(this.model.get("layout"), "change", this.relayout, this);
-        },
-
-    value_changed: function() {
+//    value_changed: function() {
+  //      this.el.myChart.resize();
     //    this.el.textContent = this.model.get('value');
-    }
+//    }
 });
 
 
@@ -93,3 +137,20 @@ module.exports = {
     HelloModel : HelloModel,
     HelloView : HelloView
 };
+
+
+/*
+
+        console.log("after Chart");
+        console.log("-----");
+        console.log("ctx.canvas.width: " + ctx.canvas.width);
+        console.log("parseInt(Chart.helpers.getStyle(ctx.canvas, 'width')): " + parseInt(Chart.helpers.getStyle(ctx.canvas, 'width')));
+        console.log("Chart.helpers.getMaximumWidth(ctx.canvas): " + Chart.helpers.getMaximumWidth(ctx.canvas));
+        console.log("width: " + ctx.canvas.width || parseInt(Chart.helpers.getStyle(ctx.canvas, 'width')) || Chart.helpers.getMaximumWidth(ctx.canvas));
+        console.log("ctx.canvas.height: " + ctx.canvas.height);
+        console.log("parseInt(Chart.helpers.getStyle(ctx.canvas, 'height')): " + parseInt(Chart.helpers.getStyle(ctx.canvas, 'height')));
+        console.log("Chart.helpers.getMaximumHeight(ctx.canvas): " + Chart.helpers.getMaximumHeight(ctx.canvas));
+        console.log("height: " + ctx.canvas.height || parseInt(Chart.helpers.getStyle(ctx.canvas, 'height')) || Chart.helpers.getMaximumHeight(ctx.canvas));
+        console.log("window.devicePixelRatio: " + window.devicePixelRatio);
+        console.log("-----");
+*/
